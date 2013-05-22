@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://aizr.github.io/wow/atom.xml" rel="self"/>
   <link href="http://aizr.github.io/wow/"/>
-  <updated>2013-05-22T15:28:41+08:00</updated>
+  <updated>2013-05-22T15:41:38+08:00</updated>
   <id>http://aizr.github.io/wow/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[TEST Blog]]></title>
+    <link href="http://aizr.github.io/wow/blog/2013/05/22/test-blog/"/>
+    <updated>2013-05-22T15:40:00+08:00</updated>
+    <id>http://aizr.github.io/wow/blog/2013/05/22/test-blog</id>
+    <content type="html"><![CDATA[<p>TEST Blog!
+測試中文！！</p>
+]]></content>
+  </entry>
   
 </feed>

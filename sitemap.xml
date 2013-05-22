@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://aizr.github.io/wow/blog/2013/05/22/test-blog/</loc>
+        <lastmod>2013-05-22T15:40:56+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://aizr.github.io/wow/</loc>
-        <lastmod>2013-05-22T15:27:33+08:00</lastmod>
+        <lastmod>2013-05-22T15:40:56+08:00</lastmod>
     </url>
     <url>
         <loc>http://aizr.github.io/wow/blog/archives/</loc>
-        <lastmod>2013-05-22T15:27:33+08:00</lastmod>
+        <lastmod>2013-05-22T15:40:56+08:00</lastmod>
     </url>
     <url>
         <loc>http://aizr.github.io/wow/robots.txt</loc>
