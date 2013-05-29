@@ -1,0 +1,9 @@
+---
+layout: post
+title: "TEST Blog"
+date: 2013-05-22 15:40
+comments: true
+categories: 
+---
+TEST Blog!
+測試中文！！
