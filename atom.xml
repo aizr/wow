@@ -4,7 +4,7 @@
   <title><![CDATA[So G]]></title>
   <link href="http://aizr.github.io/wow/atom.xml" rel="self"/>
   <link href="http://aizr.github.io/wow/"/>
-  <updated>2013-05-31T16:24:05+08:00</updated>
+  <updated>2013-05-31T16:53:38+08:00</updated>
   <id>http://aizr.github.io/wow/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -120,8 +120,9 @@ mysql&gt; show slave status;  檢查一下設定, 看是不是有異常狀況.
     <link href="http://aizr.github.io/wow/blog/2013/05/22/test-blog/"/>
     <updated>2013-05-22T15:40:00+08:00</updated>
     <id>http://aizr.github.io/wow/blog/2013/05/22/test-blog</id>
-    <content type="html"><![CDATA[<p>TEST Blog!
-測試中文！！</p>
+    <content type="html"><![CDATA[<blockquote><p>之前一直想寫Blog, 但一直沒有真正實作！ 囧
+現在開始認真實現(事實上是逼自己寫！囧 )
+不管如何希望能一直<em>勤勞的</em>寫下去囉&hellip;&hellip;&hellip;&hellip;&hellip;.</p></blockquote>
 ]]></content>
   </entry>
   
