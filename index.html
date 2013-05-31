@@ -95,58 +95,73 @@
   </header>
 
 
-  <div class="entry-content"><p>MySQL 設定寫入 Master 後, 自動 Replication 到 Slave 去, 運作基本原理是:
+  <div class="entry-content"><p>MySQL 設定寫入 Master 後, 自動 Replication 到 Slave 去, 運作基本原理是: <br />
 
-INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.
-由 GRANT REPLICATION 授權的帳號, 自動將 SQL 語法 repl 到 Slave 的 DB 執行.
-因而完成 Replication 的動作.
+INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.<br />
+由 GRANT REPLICATION 授權的帳號, 自動將 SQL 語法 repl 到 Slave 的 DB 執行.<br />
+因而完成 Replication 的動作.<br />
 
 下述詳細可見: MySQL 5.0 Reference Manual :: 15 Replication
 </p>
 
 
-<p>1.設定 Replication 的操作 (Master)<br />
-<code>$ sudo vim /etc/mysql/my.cnf</code></p>
+<p>1.設定 Replication 的操作 (Master)<br /></p>
 
-<p># 下面是 Debian Linux 的設定, 找到下面的設定, 新增/修改 成下面這樣子.</p>
+<pre><code>$ sudo vim /etc/mysql/my.cnf
+</code></pre>
 
+<p><li> 下面是 Debian Linux 的設定, 找到下面的設定, 新增/修改 成下面這樣子.</li></p>
 
 <pre><code>bind-address           = 127.0.0.1
 server-id               = 1
 log_bin                 = /var/log/mysql/mysql-bin.log
 </code></pre>
 
-<p># 若是 innodb, 且有用 transaction 的話, 需再加入下面兩行</p>
+<p><li># 若是 innodb, 且有用 transaction 的話, 需再加入下面兩行<li></p>
 
+<pre><code>innodb_flush_log_at_trx_commit=1
+sync_binlog=1
+</code></pre>
 
-<p><code>innodb_flush_log_at_trx_commit=1</code><br />
-<code>sync_binlog=1</code><br />
-<code>$ sudo /etc/init.d/mysql restart</code><br />
-<code>$ mysql -u root -p</code> <p></p>#進入mysql</p> <br /></p>
+<p><li>重新啟動mysql和進入mysql設定repl帳號密碼</li></p>
 
-<p><code>mysql&gt; GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%' IDENTIFIED BY 'repl_pass';</code> <p># 先假設 帳號 repl, 密碼 repl</p></p>
+<pre><code>$ sudo /etc/init.d/mysql restart
+$ mysql -u root -p
 
-<p><code>mysql&gt; FLUSH TABLES WITH READ LOCK;</code> <p></p>#先讓 DB 不要再寫資料進去</p><br />
-<code>mysql&gt; SHOW MASTER STATUS;</code><p># 這邊資料都要記好, 等一下設定 Slave 要用</p><br />
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
-| File                     | Position   | Binlog_Do_DB | Binlog_Ignore_DB  |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+
-| mysql-bin.000014  |      232   |                      |                          |
-+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;+</p>
+mysql&gt; GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%' IDENTIFIED BY 'repl_pass';` # 先假設 帳號 repl, 密碼 repl
+</code></pre>
 
-<p><code>mysql&gt; quit</code><p>離開</p><br /></p>
+<p><li>鎖定DB</li></p>
 
-<p>以下是幾種倒DB的方法：</p>
+<pre><code>mysql&gt; FLUSH TABLES WITH READ LOCK; 先讓 DB 不要再寫資料進去
+mysql&gt; SHOW MASTER STATUS; 這邊資料都要記好, 等一下設定 Slave 要用
++----------------------+------------+------------------+----------------------+
+| File                 | Position   | Binlog_Do_DB     | Binlog_Ignore_DB     |
++----------------------+------------+------------------+----------------------+
+| mysql-bin.000014     |      232   |                  |                      |
++----------------------+------------+------------------+----------------------+
+</code></pre>
 
+<p><li>離開</li></p>
+
+<pre><code>mysql&gt; quit
+</code></pre>
+
+<p><li>以下是幾種倒DB的方法：</li></p>
 
 <pre><code>$ mysqldump -u root -p DB &gt; dbdump.sql
 $ mysqldump --all-databases --lock-all-tables &gt;dbdump.sql
 $ mysqldump --all-databases --master-data &gt;dbdump.sql
 </code></pre>
 
-<p><code>myql&gt; UNLOCK TABLES;</code> <P># dump 完資料後, 進去 mysql 解除唯讀
-再來就是將 dbdump.sql scp 到 Slave 去即可.
-Master 就到此為止</P></p>
+<p><li>解除唯讀</li></p>
+
+<pre><code>myql&gt; UNLOCK TABLES;  dump 完資料後, 進去 mysql 解除唯讀
+</code></pre>
+
+<p>再來就是將 dbdump.sql scp 到 Slave 去即可.
+Master 就到此為止</P>
+
 
 <p>2.設定 Replication 的操作 (Slave)</p>
 
@@ -165,11 +180,14 @@ MASTER_LOG_FILE='mysql-bin.000014',
 MASTER_LOG_POS=232; # 這邊就要用到之前 Master 抄下來的值.
 </code></pre>
 
-<p><code>mysql&gt; START SLAVE;</code>  這樣子就會開始 Replication !</p>
+<p><li>開始Reolication</li></p>
 
-<p><code>mysql&gt; show master status;</code> 檢查一下設定！</p>
+<pre><code>mysql&gt; START SLAVE;  這樣子就會開始 Replication !
 
-<p><code>mysql&gt; show slave status;</code> 檢查一下設定, 看是不是有異常狀況.</p>
+mysql&gt; show master status; 檢查一下設定！
+
+mysql&gt; show slave status;  檢查一下設定, 看是不是有異常狀況.
+</code></pre>
 </div>
   
   
