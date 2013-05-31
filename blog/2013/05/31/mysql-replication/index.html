@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>TEST Blog - So G</title>
+  <title>mysql replication - So G</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="TEST Blog!
-測試中文！！
-">
+  <meta name="description" content="MySQL 設定寫入 Master 後, 自動 Replication 到 Slave 去, 運作基本原理是: INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.
+由 GRANT REPLICATION 授權的帳號, 自動將 SQL 語法 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/05/22/test-blog">
+  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/05/31/mysql-replication">
   <link href="/wow/favicon.png" rel="icon">
   <link href="/wow/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/wow/atom.xml" rel="alternate" title="So G" type="application/atom+xml">
@@ -70,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">TEST Blog</h1>
+      <h1 class="entry-title">Mysql Replication</h1>
     
     
       <p class="meta">
@@ -86,15 +85,24 @@
   
 
 
-<time datetime="2013-05-22T15:40:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2013</time>
+<time datetime="2013-05-31T15:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>TEST Blog!
-測試中文！！</p>
+<div class="entry-content"><p>MySQL 設定寫入 Master 後, 自動 Replication 到 Slave 去, 運作基本原理是:
+
+INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.
+由 GRANT REPLICATION 授權的帳號, 自動將 SQL 語法 repl 到 Slave 的 DB 執行.
+因而完成 Replication 的動作.
+
+下述詳細可見: MySQL 5.0 Reference Manual :: 15 Replication
+</p>
+
+
+<p><li>1.設定 Replication 的操作 (Master)</li></p>
 </div>
 
 
@@ -117,7 +125,7 @@
   
 
 
-<time datetime="2013-05-22T15:40:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2013</time>
+<time datetime="2013-05-31T15:00:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
       
 
 
@@ -125,7 +133,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/05/22/test-blog/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/05/22/test-blog/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/05/31/mysql-replication/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/05/31/mysql-replication/" >Tweet</a>
   
   
   
@@ -134,8 +142,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/wow/blog/2013/05/22/test-blog/" title="Previous Post: TEST Blog">&laquo; TEST Blog</a>
       
-        <a class="basic-alignment right" href="/wow/blog/2013/05/31/mysql-replication/" title="Next Post: mysql replication">mysql replication &raquo;</a>
       
     </p>
   </footer>
