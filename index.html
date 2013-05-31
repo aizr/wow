@@ -160,7 +160,7 @@ $ mysqldump --all-databases --master-data &gt;dbdump.sql
 <pre><code>myql&gt; UNLOCK TABLES;  dump 完資料後, 進去 mysql 解除唯讀
 </code></pre>
 
-<p>再來就是將 dbdump.sql scp 到 Slave 去即可.
+<p>再來就是將 dbdump.sql, scp 到 Slave 去即可.
 Master 就到此為止</P>
 
 
@@ -181,7 +181,7 @@ MASTER_LOG_FILE='mysql-bin.000014',
 MASTER_LOG_POS=232; # 這邊就要用到之前 Master 抄下來的值.
 </code></pre>
 
-<p><li>開始Reolication</li></p>
+<p><li>開始Replication</li></p>
 
 <pre><code>mysql&gt; START SLAVE;  這樣子就會開始 Replication !
 
