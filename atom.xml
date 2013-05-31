@@ -4,7 +4,7 @@
   <title><![CDATA[So G]]></title>
   <link href="http://aizr.github.io/wow/atom.xml" rel="self"/>
   <link href="http://aizr.github.io/wow/"/>
-  <updated>2013-05-31T15:05:32+08:00</updated>
+  <updated>2013-05-31T15:10:22+08:00</updated>
   <id>http://aizr.github.io/wow/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -29,6 +29,20 @@ INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.
 
 
 <p><li>1.設定 Replication 的操作 (Master)</li></p>
+
+<p><code>$ sudo vim /etc/mysql/my.cnf</code></p>
+
+
+<p># 下面是 Debian Linux 的設定, 找到下面的設定, 新增/修改 成下面這樣子.
+<code>
+bind-address           = 127.0.0.1
+server-id               = 1
+log_bin                 = /var/log/mysql/mysql-bin.log
+</code>
+</p>
+
+
+
 ]]></content>
   </entry>
   
