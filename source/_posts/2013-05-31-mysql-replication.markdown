@@ -15,15 +15,16 @@ INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.<br />
 </p>
 
 1.設定 Replication 的操作 (Master)<br />
+<li>打開my.cnf</li>
     $ sudo vim /etc/mysql/my.cnf
 
 <li> 下面是 Debian Linux 的設定, 找到下面的設定, 新增/修改 成下面這樣子.</li>
 
-    bind-address           = 127.0.0.1
+    bind-address            = 127.0.0.1
     server-id               = 1
     log_bin                 = /var/log/mysql/mysql-bin.log
 
-<li># 若是 innodb, 且有用 transaction 的話, 需再加入下面兩行<li>
+<li>若是 innodb, 且有用 transaction 的話, 需再加入下面兩行<li>
     innodb_flush_log_at_trx_commit=1
     sync_binlog=1
 
@@ -34,8 +35,8 @@ INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.<br />
     mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%' IDENTIFIED BY 'repl_pass';` # 先假設 帳號 repl, 密碼 repl
 
 <li>鎖定DB</li>
-    mysql> FLUSH TABLES WITH READ LOCK; 先讓 DB 不要再寫資料進去
-    mysql> SHOW MASTER STATUS; 這邊資料都要記好, 等一下設定 Slave 要用
+    mysql> FLUSH TABLES WITH READ LOCK; 先讓 DB 不要再寫資料進去.
+    mysql> SHOW MASTER STATUS; 這邊要記好 File & Position, 等一下設定 Slave 要用.
     +----------------------+------------+------------------+----------------------+
     | File                 | Position   | Binlog_Do_DB     | Binlog_Ignore_DB     |
     +----------------------+------------+------------------+----------------------+
