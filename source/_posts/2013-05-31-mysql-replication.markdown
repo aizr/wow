@@ -25,6 +25,7 @@ INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.<br />
     log_bin                 = /var/log/mysql/mysql-bin.log
 
 <li>若是 innodb, 且有用 transaction 的話, 需再加入下面兩行<li>
+    
     innodb_flush_log_at_trx_commit=1
     sync_binlog=1
 
