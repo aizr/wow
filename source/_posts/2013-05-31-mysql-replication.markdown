@@ -53,7 +53,7 @@ INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.<br />
 <li>解除唯讀</li>    
     myql> UNLOCK TABLES;  dump 完資料後, 進去 mysql 解除唯讀
 
-<p>再來就是將 dbdump.sql scp 到 Slave 去即可.
+<p>再來就是將 dbdump.sql, scp 到 Slave 去即可.
 Master 就到此為止</P>
 
 2.設定 Replication 的操作 (Slave)
@@ -72,7 +72,7 @@ Master 就到此為止</P>
     MASTER_LOG_FILE='mysql-bin.000014',
     MASTER_LOG_POS=232; # 這邊就要用到之前 Master 抄下來的值.
 
-<li>開始Reolication</li>
+<li>開始Replication</li>
     mysql> START SLAVE;  這樣子就會開始 Replication !
 
     mysql> show master status; 檢查一下設定！
