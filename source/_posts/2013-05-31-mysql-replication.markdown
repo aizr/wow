@@ -14,12 +14,11 @@ INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.
 下述詳細可見: MySQL 5.0 Reference Manual :: 15 Replication
 </p>
 <li>1.設定 Replication 的操作 (Master)</li>
-<p><code>$ sudo vim /etc/mysql/my.cnf</code></p>
+<p>`$ sudo vim /etc/mysql/my.cnf`</p>
 <p># 下面是 Debian Linux 的設定, 找到下面的設定, 新增/修改 成下面這樣子.
-<code>
-bind-address           = 127.0.0.1
-server-id               = 1
-log_bin                 = /var/log/mysql/mysql-bin.log
-</code>
+
+`bind-address           = 127.0.0.1`
+`server-id               = 1`
+`log_bin                 = /var/log/mysql/mysql-bin.log`
 </p>
 
