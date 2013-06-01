@@ -9,8 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="MySQL 設定寫入 Master 後, 自動 Replication 到 Slave 去, 運作基本原理是: INSERT/UPDATE/DELETE 語法, 自動寫入 Master 的 binlog file.
-由 GRANT REPLICATION 授權的帳號, 自動將 SQL 語法 &hellip;">
+  <meta name="description" content="之前有遇到Replication table error, 有給它緊張到~ XD 後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！ 以下是簡易的處理方法： mysql&gt; REPAIR TABLE table_name
+mysql&gt; SET &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,53 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wow/blog/2013/06/01/mysql-replication-xiu-fu/">Mysql Replication 修復</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-01T16:45:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>之前有遇到Replication table error, 有給它緊張到~ XD</p>
+
+<p>後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！</p>
+
+<p>以下是簡易的處理方法：</p>
+
+<pre><code>mysql&gt; REPAIR TABLE table_name
+mysql&gt; SET GLOBAL SQL_SLAVE_SKIP_COUNTER=1; 暫時跳過一筆資料
+mysql&gt; START SLAVE; 重新啟動SLAVE
+</code></pre>
+
+<p>但執行後, 還是要找時間同步Master &amp; Slave兩邊的資料喔~~~</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -245,6 +292,10 @@ mysql&gt; show slave status;  檢查一下設定, 看是不是有異常狀況.
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/wow/blog/2013/06/01/mysql-replication-xiu-fu/">Mysql Replication 修復</a>
+      </li>
     
       <li class="post">
         <a href="/wow/blog/2013/05/31/mysql-replication/">Mysql Replication</a>

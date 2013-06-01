@@ -4,7 +4,7 @@
   <title><![CDATA[So G]]></title>
   <link href="http://aizr.github.io/wow/atom.xml" rel="self"/>
   <link href="http://aizr.github.io/wow/"/>
-  <updated>2013-05-31T21:05:23+08:00</updated>
+  <updated>2013-06-01T16:53:54+08:00</updated>
   <id>http://aizr.github.io/wow/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mysql Replication 修復]]></title>
+    <link href="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu/"/>
+    <updated>2013-06-01T16:45:00+08:00</updated>
+    <id>http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu</id>
+    <content type="html"><![CDATA[<p>之前有遇到Replication table error, 有給它緊張到~ XD</p>
+
+<p>後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！</p>
+
+<p>以下是簡易的處理方法：</p>
+
+<pre><code>mysql&gt; REPAIR TABLE table_name
+mysql&gt; SET GLOBAL SQL_SLAVE_SKIP_COUNTER=1; 暫時跳過一筆資料
+mysql&gt; START SLAVE; 重新啟動SLAVE
+</code></pre>
+
+<p>但執行後, 還是要找時間同步Master &amp; Slave兩邊的資料喔~~~</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mysql replication]]></title>

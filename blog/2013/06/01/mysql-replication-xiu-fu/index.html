@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - So G</title>
+  <title>Mysql Replication 修復 - So G</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Blog Archive 2013 Mysql Replication 修復
-Jun 01 2013 mysql replication
-May 31 2013 TEST Blog
-May 22 2013 Recent Posts Mysql Replication 修復 Mysql &hellip;">
+  <meta name="description" content="之前有遇到Replication table error, 有給它緊張到~ XD 後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！ 以下是簡易的處理方法： mysql&gt; REPAIR TABLE table_name
+mysql&gt; SET &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +19,7 @@ May 22 2013 Recent Posts Mysql Replication 修復 Mysql &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aizr.github.io/wow/blog/archives">
+  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu">
   <link href="/wow/favicon.png" rel="icon">
   <link href="/wow/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/wow/atom.xml" rel="alternate" title="So G" type="application/atom+xml">
@@ -67,51 +65,89 @@ May 22 2013 Recent Posts Mysql Replication 修復 Mysql &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Mysql Replication 修復</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-01T16:45:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>之前有遇到Replication table error, 有給它緊張到~ XD</p>
 
-  
-  <h2>2013</h2>
+<p>後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！</p>
 
-<article>
-  
-<h1><a href="/wow/blog/2013/06/01/mysql-replication-xiu-fu/">Mysql Replication 修復</a></h1>
-<time datetime="2013-06-01T16:45:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>01</span> <span class='year'>2013</span></time>
+<p>以下是簡易的處理方法：</p>
 
+<pre><code>mysql&gt; REPAIR TABLE table_name
+mysql&gt; SET GLOBAL SQL_SLAVE_SKIP_COUNTER=1; 暫時跳過一筆資料
+mysql&gt; START SLAVE; 重新啟動SLAVE
+</code></pre>
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/wow/blog/2013/05/31/mysql-replication/">mysql replication</a></h1>
-<time datetime="2013-05-31T15:00:00+08:00" pubdate><span class='month'>May</span> <span class='day'>31</span> <span class='year'>2013</span></time>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/wow/blog/2013/05/22/test-blog/">TEST Blog</a></h1>
-<time datetime="2013-05-22T15:40:00+08:00" pubdate><span class='month'>May</span> <span class='day'>22</span> <span class='year'>2013</span></time>
-
-
-</article>
-
+<p>但執行後, 還是要找時間同步Master &amp; Slave兩邊的資料喔~~~</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-01T16:45:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/wow/blog/2013/05/31/mysql-replication/" title="Previous Post: mysql replication">&laquo; mysql replication</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
