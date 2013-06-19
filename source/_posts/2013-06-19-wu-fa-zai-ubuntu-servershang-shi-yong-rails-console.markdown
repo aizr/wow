@@ -10,9 +10,11 @@ categories:
 
 在自己的Production Server上 , 無意中要開啟 Rails console的時候卻出現無法開啟的error log!
 
-問了Google大神找到解決方法, 可以先使用看看production ENV,    RAILS_ENV=production rails c
+問了Google大神找到解決方法, 可以先使用看看production ENV
 
-看看在production的環靜變數下是否能正常運作！ 可以的話就把這個變數值放進.bashrc裡！
+    ＄ RAILS_ENV=production rails c
+
+看看在production的環境變數下是否能正常運作！ 可以的話就把這個變數值放進.bashrc裡！
 
     $ echo 'export RAILS_ENV=production' >> .bashrc
 
