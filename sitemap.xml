@@ -13,12 +13,18 @@
         <lastmod>2013-06-01T16:53:44+08:00</lastmod>
     </url>
     <url>
-        <loc>http://aizr.github.io/wow/</loc>
-        <lastmod>2013-06-01T16:53:44+08:00</lastmod>
+        <loc>
+            http://aizr.github.io/wow/blog/2013/06/19/wu-fa-zai-ubuntu-servershang-shi-yong-rails-console/
+        </loc>
+        <lastmod>2013-06-19T11:04:48+08:00</lastmod>
     </url>
     <url>
         <loc>http://aizr.github.io/wow/blog/archives/</loc>
-        <lastmod>2013-06-01T16:53:44+08:00</lastmod>
+        <lastmod>2013-06-19T11:04:48+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://aizr.github.io/wow/</loc>
+        <lastmod>2013-06-19T11:04:48+08:00</lastmod>
     </url>
     <url>
         <loc>http://aizr.github.io/wow/robots.txt</loc>

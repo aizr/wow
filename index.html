@@ -9,8 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="之前有遇到Replication table error, 有給它緊張到~ XD 後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！ 以下是簡易的處理方法： mysql&gt; REPAIR TABLE table_name
-mysql&gt; SET &hellip;">
+  <meta name="description" content="又遇到一個小小的問題, 但會整死你的問題！ 讓我想到牙痛不是病, 痛起來要人命&hellip;&hellip;. 在自己的Production Server上 , 無意中要開啟 Rails console的時候卻出現無法開啟的error log! 問了Google大神找到解決方法, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,53 @@ mysql&gt; SET &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wow/blog/2013/06/19/wu-fa-zai-ubuntu-servershang-shi-yong-rails-console/">無法在ubuntu Server上使用 Rails Console</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-19T10:54:00+08:00" pubdate data-updated="true">Jun 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>又遇到一個小小的問題, 但會整死你的問題！ 讓我想到牙痛不是病, 痛起來要人命&hellip;&hellip;.</p>
+
+<p>在自己的Production Server上 , 無意中要開啟 Rails console的時候卻出現無法開啟的error log!</p>
+
+<p>問了Google大神找到解決方法, 可以先使用看看production ENV,    RAILS_ENV=production rails c</p>
+
+<p>看看在production的環靜變數下是否能正常運作！ 可以的話就把這個變數值放進.bashrc裡！</p>
+
+<pre><code>$ echo 'export RAILS_ENV=production' &gt;&gt; .bashrc
+</code></pre>
+
+<p>就是這樣囉&hellip;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -292,6 +338,10 @@ mysql&gt; show slave status;  檢查一下設定, 看是不是有異常狀況.
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/wow/blog/2013/06/19/wu-fa-zai-ubuntu-servershang-shi-yong-rails-console/">無法在ubuntu Server上使用 Rails Console</a>
+      </li>
     
       <li class="post">
         <a href="/wow/blog/2013/06/01/mysql-replication-xiu-fu/">Mysql Replication 修復</a>
