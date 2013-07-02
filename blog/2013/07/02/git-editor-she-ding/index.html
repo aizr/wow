@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mysql Replication 修復 - So X....</title>
+  <title>Git editor 設定 - So X....</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="之前有遇到Replication table error, 有給它緊張到~ XD 後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！ 以下是簡易的處理方法： mysql&gt; REPAIR TABLE table_name
-mysql&gt; SET &hellip;">
+  <meta name="description" content="使用 Git rebase 的時候, Git 會自動使用系統內的編輯器！ 例如： vi , vim &hellip;&hellip; 預設的情形下有可能開不了編輯器, 輸入下列command line即可使用！ git config --global core.editor "/usr/bin/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ mysql&gt; SET &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu">
+  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/07/02/git-editor-she-ding">
   <link href="/wow/favicon.png" rel="icon">
   <link href="/wow/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/wow/atom.xml" rel="alternate" title="So X...." type="application/atom+xml">
@@ -69,7 +68,7 @@ mysql&gt; SET &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Mysql Replication 修復</h1>
+      <h1 class="entry-title">Git Editor 設定</h1>
     
     
       <p class="meta">
@@ -85,25 +84,24 @@ mysql&gt; SET &hellip;">
   
 
 
-<time datetime="2013-06-01T16:45:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-07-02T18:52:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>之前有遇到Replication table error, 有給它緊張到~ XD</p>
+<div class="entry-content"><p>使用 Git rebase 的時候, Git 會自動使用系統內的編輯器！ 例如： vi , vim &hellip;&hellip;</p>
 
-<p>後來找到了問題, 因為Master and slave兩邊的資料有不同步的問題, 導致無法複製！</p>
+<p>預設的情形下有可能開不了編輯器, 輸入下列command line即可使用！</p>
 
-<p>以下是簡易的處理方法：</p>
-
-<pre><code>mysql&gt; REPAIR TABLE table_name
-mysql&gt; SET GLOBAL SQL_SLAVE_SKIP_COUNTER=1; 暫時跳過一筆資料
-mysql&gt; START SLAVE; 重新啟動SLAVE
+<pre><code>git config --global core.editor "/usr/bin/vim"
 </code></pre>
 
-<p>但執行後, 還是要找時間同步Master &amp; Slave兩邊的資料喔~~~</p>
+<p>要注意的是, 必需先知道自己的編輯器路徑, 所以先找路徑的command line</p>
+
+<pre><code>$ which &lt;編輯器名稱&gt;
+</code></pre>
 </div>
 
 
@@ -126,7 +124,7 @@ mysql&gt; START SLAVE; 重新啟動SLAVE
   
 
 
-<time datetime="2013-06-01T16:45:00+08:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+<time datetime="2013-07-02T18:52:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
       
 
 
@@ -134,7 +132,7 @@ mysql&gt; START SLAVE; 重新啟動SLAVE
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/06/01/mysql-replication-xiu-fu/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/07/02/git-editor-she-ding/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/07/02/git-editor-she-ding/" >Tweet</a>
   
   
   
@@ -143,10 +141,8 @@ mysql&gt; START SLAVE; 重新啟動SLAVE
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/wow/blog/2013/05/31/mysql-replication/" title="Previous Post: mysql replication">&laquo; mysql replication</a>
+        <a class="basic-alignment left" href="/wow/blog/2013/06/19/wu-fa-zai-ubuntu-servershang-shi-yong-rails-console/" title="Previous Post: 無法在ubuntu server上使用 Rails console">&laquo; 無法在ubuntu server上使用 Rails console</a>
       
-      
-        <a class="basic-alignment right" href="/wow/blog/2013/06/19/wu-fa-zai-ubuntu-servershang-shi-yong-rails-console/" title="Next Post: 無法在ubuntu server上使用 Rails console">無法在ubuntu server上使用 Rails console &raquo;</a>
       
     </p>
   </footer>

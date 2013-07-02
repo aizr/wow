@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="又遇到一個小小的問題, 但會整死你的問題！ 讓我想到牙痛不是病, 痛起來要人命&hellip;&hellip;. 在自己的Production Server上 , 無意中要開啟 Rails console的時候卻出現無法開啟的error log! 問了Google大神找到解決方法, &hellip;">
+  <meta name="description" content="使用 Git rebase 的時候, Git 會自動使用系統內的編輯器！ 例如： vi , vim &hellip;&hellip; 預設的情形下有可能開不了編輯器, 輸入下列command line即可使用！ git config --global core.editor "/usr/bin/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/wow/blog/2013/07/02/git-editor-she-ding/">Git Editor 設定</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-02T18:52:00+08:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>使用 Git rebase 的時候, Git 會自動使用系統內的編輯器！ 例如： vi , vim &hellip;&hellip;</p>
+
+<p>預設的情形下有可能開不了編輯器, 輸入下列command line即可使用！</p>
+
+<pre><code>git config --global core.editor "/usr/bin/vim"
+</code></pre>
+
+<p>要注意的是, 必需先知道自己的編輯器路徑, 所以先找路徑的command line</p>
+
+<pre><code>$ which &lt;編輯器名稱&gt;
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -341,6 +387,10 @@ mysql&gt; show slave status;  檢查一下設定, 看是不是有異常狀況.
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/wow/blog/2013/07/02/git-editor-she-ding/">Git Editor 設定</a>
+      </li>
     
       <li class="post">
         <a href="/wow/blog/2013/06/19/wu-fa-zai-ubuntu-servershang-shi-yong-rails-console/">無法在ubuntu Server上使用 Rails Console</a>
