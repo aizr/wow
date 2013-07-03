@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>TEST Blog - So X....</title>
+  <title>Git 修正已commit的內容 - So X....</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="之前一直想寫Blog, 但一直沒有真正實作！ 囧
-現在開始認真實現(事實上是逼自己寫！囧 )
-不管如何希望能一直勤勞的寫下去囉&hellip;&hellip;&hellip;&hellip;&hellip;.
-">
+  <meta name="description" content="很多時候可能手誤或其它原因把程式給commit上去了, 更慘的是還push到遠端的機器上！ Git 的指令很多, 但就是不知道如何拼湊才能正確的修改已經commit的錯誤&hellip;&hellip; 今日找到以下的方法,可以試試！ 首先在本地端可以先下 ＄git log 找出下列這段 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/05/22/test-blog">
+  <link rel="canonical" href="http://aizr.github.io/wow/blog/2013/07/03/git-xiu-zheng-yi-commitde-nei-rong">
   <link href="/wow/favicon.png" rel="icon">
   <link href="/wow/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/wow/atom.xml" rel="alternate" title="So X...." type="application/atom+xml">
@@ -71,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">TEST Blog</h1>
+      <h1 class="entry-title">Git 修正已commit的內容</h1>
     
     
       <p class="meta">
@@ -87,16 +84,92 @@
   
 
 
-<time datetime="2013-05-22T15:40:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2013</time>
+<time datetime="2013-07-03T11:33:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><blockquote><p>之前一直想寫Blog, 但一直沒有真正實作！ 囧
-現在開始認真實現(事實上是逼自己寫！囧 )
-不管如何希望能一直<em>勤勞的</em>寫下去囉&hellip;&hellip;&hellip;&hellip;&hellip;.</p></blockquote>
+<div class="entry-content"><p>很多時候可能手誤或其它原因把程式給commit上去了, 更慘的是還push到遠端的機器上！</p>
+
+<p>Git 的指令很多, 但就是不知道如何拼湊才能正確的修改已經commit的錯誤&hellip;&hellip;</p>
+
+<p>今日找到以下的方法,可以試試！</p>
+
+<p>首先在本地端可以先下</p>
+
+<pre><code>＄git log
+</code></pre>
+
+<p>找出下列這段</p>
+
+<pre><code>commit 6b0832665f91cb102f9
+</code></pre>
+
+<p>這是git commit 後產生的識別代碼,請複製一下！</p>
+
+<p>再將識別碼貼進下列command line</p>
+
+<pre><code>＄git rebase -i &lt;commit 識別代碼&gt;
+</code></pre>
+
+<p>如此就會進入編輯程序囉～ 大致上會長得像下面的那樣子&hellip;..</p>
+
+<pre><code>1 pick 6b08326 new post
+2
+3 # Rebase d65e784..6b08326 onto d65e784
+4 #
+5 # Commands:
+6 #  p, pick = use commit
+7 #  r, reword = use commit, but edit the commit message
+8 #  e, edit = use commit, but stop for amending
+9 #  s, squash = use commit, but meld into previous commit
+10 #  f, fixup = like "squash", but discard this commit's log message
+11 #  x, exec = run command (the rest of the line) using shell
+12 #
+13 # These lines can be re-ordered; they are executed from top to bottom.
+14 #
+15 # If you remove a line here THAT COMMIT WILL BE LOST.
+16 # However, if you remove everything, the rebase will be aborted.
+17 #
+18 # Note that empty commits are commented out
+</code></pre>
+
+<p>有關操作指令的解釋如下：</p>
+
+<ul>
+<li>pick = 使用這個 commit,不做更動.</li>
+<li>reword = 使用這個 commit ，但要更改 commit message.</li>
+<li>edit = 使用這個 commit，但要更動 commit 的內容.</li>
+<li>squash = 使用這個 commit，並與前面那個commit合併，並保 commit messages.</li>
+<li>fixup = squash + 只使用前面那條 commit 的 message ，捨棄這條 message</li>
+<li>exec = 執行一條指令</li>
+</ul>
+
+
+<p>然後將檔案儲存, 再來就可以將commit 的內容倒出來修正了！</p>
+
+<pre><code>$ git reset --HEAD^ #將所有comit的內容倒出來.
+</code></pre>
+
+<p>修正完畢後將修正完的檔案加入git暫存區</p>
+
+<pre><code>$ git add &lt;file name&gt;
+$ git commit -a -c -ORIG_HEAD #如果不想重新commit ,可以使用舊的commit訊息.
+</code></pre>
+
+<p>現在都做完修正也commit了,再來就是</p>
+
+<pre><code>$ git rebase --continue
+</code></pre>
+
+<p>git 會透過 commit &mdash;amend 一起重新commit, 接下來就是push到遠端囉！</p>
+
+<pre><code>$ git push -f origin master # -f 是強制push
+</code></pre>
+
+<p>這樣就大功告成了！</p>
 </div>
 
 
@@ -119,7 +192,7 @@
   
 
 
-<time datetime="2013-05-22T15:40:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2013</time>
+<time datetime="2013-07-03T11:33:00+08:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
       
 
 
@@ -127,7 +200,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/05/22/test-blog/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/05/22/test-blog/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://aizr.github.io/wow/blog/2013/07/03/git-xiu-zheng-yi-commitde-nei-rong/" data-via="" data-counturl="http://aizr.github.io/wow/blog/2013/07/03/git-xiu-zheng-yi-commitde-nei-rong/" >Tweet</a>
   
   
   
@@ -136,8 +209,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/wow/blog/2013/07/02/git-editor-she-ding/" title="Previous Post: Git editor 設定">&laquo; Git editor 設定</a>
       
-        <a class="basic-alignment right" href="/wow/blog/2013/05/31/mysql-replication/" title="Next Post: mysql replication">mysql replication &raquo;</a>
       
     </p>
   </footer>

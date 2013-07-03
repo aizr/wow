@@ -4,7 +4,7 @@
   <title><![CDATA[So X....]]></title>
   <link href="http://aizr.github.io/wow/atom.xml" rel="self"/>
   <link href="http://aizr.github.io/wow/"/>
-  <updated>2013-07-02T19:01:15+08:00</updated>
+  <updated>2013-07-03T12:09:16+08:00</updated>
   <id>http://aizr.github.io/wow/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git 修正已commit的內容]]></title>
+    <link href="http://aizr.github.io/wow/blog/2013/07/03/git-xiu-zheng-yi-commitde-nei-rong/"/>
+    <updated>2013-07-03T11:33:00+08:00</updated>
+    <id>http://aizr.github.io/wow/blog/2013/07/03/git-xiu-zheng-yi-commitde-nei-rong</id>
+    <content type="html"><![CDATA[<p>很多時候可能手誤或其它原因把程式給commit上去了, 更慘的是還push到遠端的機器上！</p>
+
+<p>Git 的指令很多, 但就是不知道如何拼湊才能正確的修改已經commit的錯誤&hellip;&hellip;</p>
+
+<p>今日找到以下的方法,可以試試！</p>
+
+<p>首先在本地端可以先下</p>
+
+<pre><code>＄git log
+</code></pre>
+
+<p>找出下列這段</p>
+
+<pre><code>commit 6b0832665f91cb102f9
+</code></pre>
+
+<p>這是git commit 後產生的識別代碼,請複製一下！</p>
+
+<p>再將識別碼貼進下列command line</p>
+
+<pre><code>＄git rebase -i &lt;commit 識別代碼&gt;
+</code></pre>
+
+<p>如此就會進入編輯程序囉～ 大致上會長得像下面的那樣子&hellip;..</p>
+
+<pre><code>1 pick 6b08326 new post
+2
+3 # Rebase d65e784..6b08326 onto d65e784
+4 #
+5 # Commands:
+6 #  p, pick = use commit
+7 #  r, reword = use commit, but edit the commit message
+8 #  e, edit = use commit, but stop for amending
+9 #  s, squash = use commit, but meld into previous commit
+10 #  f, fixup = like "squash", but discard this commit's log message
+11 #  x, exec = run command (the rest of the line) using shell
+12 #
+13 # These lines can be re-ordered; they are executed from top to bottom.
+14 #
+15 # If you remove a line here THAT COMMIT WILL BE LOST.
+16 # However, if you remove everything, the rebase will be aborted.
+17 #
+18 # Note that empty commits are commented out
+</code></pre>
+
+<p>有關操作指令的解釋如下：</p>
+
+<ul>
+<li>pick = 使用這個 commit,不做更動.</li>
+<li>reword = 使用這個 commit ，但要更改 commit message.</li>
+<li>edit = 使用這個 commit，但要更動 commit 的內容.</li>
+<li>squash = 使用這個 commit，並與前面那個commit合併，並保 commit messages.</li>
+<li>fixup = squash + 只使用前面那條 commit 的 message ，捨棄這條 message</li>
+<li>exec = 執行一條指令</li>
+</ul>
+
+
+<p>然後將檔案儲存, 再來就可以將commit 的內容倒出來修正了！</p>
+
+<pre><code>$ git reset --HEAD^ #將所有comit的內容倒出來.
+</code></pre>
+
+<p>修正完畢後將修正完的檔案加入git暫存區</p>
+
+<pre><code>$ git add &lt;file name&gt;
+$ git commit -a -c -ORIG_HEAD #如果不想重新commit ,可以使用舊的commit訊息.
+</code></pre>
+
+<p>現在都做完修正也commit了,再來就是</p>
+
+<pre><code>$ git rebase --continue
+</code></pre>
+
+<p>git 會透過 commit &mdash;amend 一起重新commit, 接下來就是push到遠端囉！</p>
+
+<pre><code>$ git push -f origin master # -f 是強制push
+</code></pre>
+
+<p>這樣就大功告成了！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git editor 設定]]></title>
